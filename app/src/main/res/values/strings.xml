@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">QuickNews</string>
-    <string name="no_content">No data to display</string>
-    <string name="no_internet">No internet connection</string>
+    <string name="no_content">No data to display?! That is weird. Please, contact the creator of app to check if it is everything functional.</string>
+    <string name="no_internet">No internet. Please, check your internet connectivity.</string>
 </resources>

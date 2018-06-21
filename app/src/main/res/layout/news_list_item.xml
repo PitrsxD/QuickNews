@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/view_section"
+        android:id="@+id/text_view_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_end"
@@ -19,7 +19,7 @@
 
 
     <TextView
-        android:id="@+id/view_title"
+        android:id="@+id/text_view_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_end"
@@ -34,7 +34,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/view_author"
+            android:id="@+id/text_view_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start_end"
@@ -42,7 +42,7 @@
             tools:text="Name Surname" />
 
         <TextView
-            android:id="@+id/view_date"
+            android:id="@+id/text_view_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_start_end"

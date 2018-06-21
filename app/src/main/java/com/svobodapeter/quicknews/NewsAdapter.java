@@ -33,14 +33,14 @@ public class NewsAdapter extends ArrayAdapter<NewsItem> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.news_list, parent, false);
+                    R.layout.news_list_item, parent, false);
         }
 
         //Searching for Views
-        TextView sectionName = listItemView.findViewById(R.id.view_section);
-        TextView webTitle = listItemView.findViewById(R.id.view_title);
-        TextView dateOfPublication = listItemView.findViewById(R.id.view_date);
-        TextView contributor = listItemView.findViewById(R.id.view_author);
+        TextView sectionNameTextView = listItemView.findViewById(R.id.text_view_section);
+        TextView webTitleTextView = listItemView.findViewById(R.id.text_view_title);
+        TextView dateOfPublicationTextView = listItemView.findViewById(R.id.text_view_date);
+        TextView contributorTextView = listItemView.findViewById(R.id.text_view_author);
         LinearLayout newsBox = listItemView.findViewById(R.id.news_box);
 
 
@@ -49,24 +49,24 @@ public class NewsAdapter extends ArrayAdapter<NewsItem> {
         //Inflating view with name of category
         String mSectionName = currentNewsObject.getSectionName();
         if (mSectionName != null) {
-        sectionName.setText(mSectionName);
+        sectionNameTextView.setText(mSectionName);
         }
         //Inflating view with title of news
         String mWebTitle = currentNewsObject.getWebTitle();
         if (mWebTitle != null) {
-        webTitle.setText(mWebTitle);
+        webTitleTextView.setText(mWebTitle);
         }
         //Inflating view with name of author
         String mContributor = currentNewsObject.getContributor();
         if (mContributor != null) {
-        contributor.setText(mContributor);
+        contributorTextView.setText(mContributor);
         }
         //Inflating view with date of publication
         String mDate = currentNewsObject.getDateOfPublication();
         if (mDate != null) {
         String updateString = mDate.replace("T"," ");
         String newDateString = updateString.replace ("Z","");
-        dateOfPublication.setText(newDateString);
+        dateOfPublicationTextView.setText(newDateString);
         }
         // Giving each item onclick listener to open in intent attached URL
         newsBox.setOnClickListener(new View.OnClickListener() {
