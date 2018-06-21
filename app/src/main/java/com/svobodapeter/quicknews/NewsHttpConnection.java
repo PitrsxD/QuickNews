@@ -21,6 +21,8 @@ public final class NewsHttpConnection {
     //Tag for Log.i in case of Exception
     public static final String LOG_TAG = NewsHttpConnection.class.getSimpleName();
 
+
+
     public static ArrayList<NewsItem> fetchNews(String requestURL) {
 
         URL url = createURL(requestURL);
@@ -129,11 +131,17 @@ public final class NewsHttpConnection {
                 String urlData = o.getString("webUrl");
                 // Data about contributor
                 JSONArray tags = o.getJSONArray("tags");
-                JSONObject t = tags.getJSONObject(0);
-                String contributor = t.getString("webTitle");
-                // Parsing data to NewsItem class
-                newsList.add(new NewsItem(sectionName, webTitle, dateOfPublication, urlData, contributor));
-                Log.i("queryUtils", newsList.toString());
+                if (!tags.isNull(0)) {
+                    JSONObject t = tags.getJSONObject(0);
+                    String contributor = t.getString("webTitle");
+                    // Parsing data to NewsItem class
+                    newsList.add(new NewsItem(sectionName, webTitle, dateOfPublication, urlData, contributor));
+                    Log.i("queryUtils", newsList.toString());
+                } else {
+                    newsList.add(new NewsItem(sectionName, webTitle, dateOfPublication, urlData));
+                    Log.i("queryUtils", newsList.toString());
+                }
+
             }
         } catch (JSONException e) {
             //In case of error Log will be printed

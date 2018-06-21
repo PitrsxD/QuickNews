@@ -24,6 +24,13 @@ public class NewsItem {
         mContributor = contributor;
     }
 
+    public NewsItem(String sectionName, String webTitle, String dateOfPublication, String urlData) {
+        mSectionName = sectionName;
+        mWebTitle = webTitle;
+        mDateOfPublication = dateOfPublication;
+        mUrlData = urlData;
+    }
+
     public String getSectionName() {
         return mSectionName;
     }
