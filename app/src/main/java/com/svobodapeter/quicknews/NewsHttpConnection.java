@@ -21,8 +21,6 @@ public final class NewsHttpConnection {
     //Tag for Log.i in case of Exception
     public static final String LOG_TAG = NewsHttpConnection.class.getSimpleName();
 
-
-
     public static ArrayList<NewsItem> fetchNews(String requestURL) {
 
         URL url = createURL(requestURL);
@@ -54,6 +52,9 @@ public final class NewsHttpConnection {
      */
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
+        int MAX_READ_TIMEOUT = 10000;
+        int MAX_CONNECTION_TIMEOUT = 15000;
+        int HTTP_OK = 200;
 
         if (jsonResponse == null) {
             return jsonResponse;
@@ -64,13 +65,13 @@ public final class NewsHttpConnection {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000/*miliseconds*/);
-            urlConnection.setConnectTimeout(15000/*miliseconds*/);
+            urlConnection.setReadTimeout(MAX_READ_TIMEOUT/*miliseconds*/);
+            urlConnection.setConnectTimeout(MAX_CONNECTION_TIMEOUT/*miliseconds*/);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
             System.out.println("Response code:" + String.valueOf(urlConnection.getResponseCode()));
             //Code 200 = connection was successful
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 //Obtained data are stored in buffer and retrieved in more readable format
                 jsonResponse = readFromStream(inputStream);

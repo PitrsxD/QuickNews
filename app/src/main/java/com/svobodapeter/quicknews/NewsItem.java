@@ -24,6 +24,7 @@ public class NewsItem {
         mContributor = contributor;
     }
 
+    //Secondary constructor when the contributor is missing
     public NewsItem(String sectionName, String webTitle, String dateOfPublication, String urlData) {
         mSectionName = sectionName;
         mWebTitle = webTitle;

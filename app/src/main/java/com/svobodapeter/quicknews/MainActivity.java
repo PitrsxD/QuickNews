@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         newsAdapter = new NewsAdapter(this, new ArrayList<NewsItem>());
 
         //Binding ListView from activity_main.xml
-        newsListView = (ListView) findViewById(R.id.list);
+        newsListView = findViewById(R.id.list);
 
         //Binding emptyView for cases when there are no data do load
         emptyView = findViewById(R.id.empty_view);
@@ -96,9 +96,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String orderBy  = sharedPrefs.getString(
+        String orderBy = sharedPrefs.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
+        );
+
+        String topics = sharedPrefs.getString(
+                getString(R.string.settings_topics_key),
+                getString(R.string.settings_topics_default)
         );
 
         // parse breaks apart the URI string that's passed into its parameter
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Append query parameter and its value. For example, the `format=geojson`
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("q", topics);
 
         //Creating new NewsLoader to load data from URL of the Guardian
         return new NewsLoader(this, uriBuilder.toString());

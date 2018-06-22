@@ -12,7 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<NewsItem> {
@@ -49,24 +52,30 @@ public class NewsAdapter extends ArrayAdapter<NewsItem> {
         //Inflating view with name of category
         String mSectionName = currentNewsObject.getSectionName();
         if (mSectionName != null) {
-        sectionNameTextView.setText(mSectionName);
+            sectionNameTextView.setText(mSectionName);
         }
         //Inflating view with title of news
         String mWebTitle = currentNewsObject.getWebTitle();
         if (mWebTitle != null) {
-        webTitleTextView.setText(mWebTitle);
+            webTitleTextView.setText(mWebTitle);
         }
         //Inflating view with name of author
         String mContributor = currentNewsObject.getContributor();
         if (mContributor != null) {
-        contributorTextView.setText(mContributor);
+            contributorTextView.setText(mContributor);
         }
         //Inflating view with date of publication
         String mDate = currentNewsObject.getDateOfPublication();
         if (mDate != null) {
-        String updateString = mDate.replace("T"," ");
-        String newDateString = updateString.replace ("Z","");
-        dateOfPublicationTextView.setText(newDateString);
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try {
+                Date newDate = DATE_FORMAT.parse(mDate);
+                DATE_FORMAT = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+                String date = DATE_FORMAT.format(newDate);
+                dateOfPublicationTextView.setText(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         // Giving each item onclick listener to open in intent attached URL
         newsBox.setOnClickListener(new View.OnClickListener() {

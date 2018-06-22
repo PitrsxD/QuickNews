@@ -30,13 +30,16 @@ public class SettingsActivity extends AppCompatActivity {
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
 
+            Preference topics = findPreference(getString(R.string.settings_topics_key));
+            bindPreferenceSummaryToValue(topics);
+
         }
 
         //Listener Switching states between Oldest and Newest inf.
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-            if (preference instanceof ListPreference){
+            if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int prefIndex = listPreference.findIndexOfValue(stringValue);
                 if (prefIndex >= 0) {
@@ -50,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         //Binding selected preferences after Listener
-        private void bindPreferenceSummaryToValue (Preference preference) {
+        private void bindPreferenceSummaryToValue(Preference preference) {
             preference.setOnPreferenceChangeListener(this);
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
             String preferenceString = preferences.getString(preference.getKey(), "");
