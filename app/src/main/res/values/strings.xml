@@ -20,7 +20,7 @@
     <string name="settings_topics_key" translatable="false">q</string>
     <string name="settings_topics_default" translatable="false">@string/settings_topics_value</string>
     <string name="settings_topics_description">Write your interests here</string>
-    <string name="settings_topics_value" translatable="false">newest</string>
+    <string name="settings_topics_value" translatable="false"></string>
 
 
 </resources>
